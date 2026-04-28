@@ -1,0 +1,850 @@
+:root{
+  --paper:#f7f5f1;
+  --paper2:#ffffff;
+  --ink:#0c0c0c;
+  --muted:#6b6b6b;
+  --line: rgba(12,12,12,.12);
+
+  --radius: 20px;
+  --shadow: 0 18px 45px rgba(0,0,0,.12);
+
+  --max: 1120px;
+
+  --ease: cubic-bezier(.2,.9,.2,1);
+  --t: 260ms var(--ease);
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+/* html, body { overflow-x: hidden; } */
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper2);
+}
+
+/* Utilities */
+.container{ width:min(var(--max), calc(100% - 48px)); margin-inline:auto; }
+.muted{ color: var(--muted); }
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 600;
+  text-decoration:none;
+  border:1px solid transparent;
+  transition: transform var(--t), background var(--t), color var(--t), border-color var(--t), opacity var(--t);
+  cursor:pointer;
+  user-select:none;
+}
+.btn:active{ transform: translateY(1px); }
+.btn--solid{
+  background: var(--ink);
+  color: var(--paper2);
+  border-color: rgba(0,0,0,.2);
+}
+.btn--solid:hover{ opacity:.92; }
+.btn--ghost{
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn--ghost:hover{ background: rgba(0,0,0,.03); }
+
+/* NAV */
+
+.nav{
+  background-color: var(--shadow);  /* Invisible background*/
+
+  display: block;
+  position: sticky;
+  text-align: center;
+  mix-blend-mode: difference;
+  color: #fff;
+  z-index: 999;
+  top: 0;
+
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  transition-property: all;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  transition-behavior: normal;
+
+  /* Underline animation tuning */
+  --u-thick: 3px;
+  --u-dur: 170ms;
+  --u-ease: cubic-bezier(.2,.9,.2,1);
+}
+
+/* Nav links: πιο μεγάλα + πιο χοντρά */
+.nav a{
+  color: inherit;
+  text-decoration: none;
+
+  font-weight: 700;
+
+  font-size: clamp(20px, 1.2vw, 30px);
+  letter-spacing: 0.02em;
+
+  padding: 0px 30px;
+  display: inline-block;
+
+  /* Animated underline (slides in fast from the left) */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% var(--u-thick);  /* start hidden */
+  background-position: 0 100%;
+  background-origin: content-box;      /* underline only under the word */
+  background-clip: content-box;
+  transition: opacity var(--t), background-size var(--u-dur) var(--u-ease);
+  will-change: background-size;
+}
+
+.nav a.is-active,
+.nav a:focus-visible{
+  background-size: 100% var(--u-thick);
+}
+
+/* No underline for the "logo" (DOUKAS) */
+a.nav__brand{
+  background-image: none !important;
+  background-size: 0 0 !important;
+}
+
+/* extra safety if it ever becomes active */
+a.nav__brand.is-active{
+  background-image: none !important;
+  background-size: 0 0 !important;
+}
+
+
+/* Κεντρικό brand: ακόμα μεγαλύτερο */
+a.nav__brand{
+  font-weight: 800;
+  font-size: clamp(30px, 2vw, 40px);
+  letter-spacing: 0.08em;
+}
+
+/* optional: μικρό hover χωρίς να χαλάει το mix-blend-mode */
+.nav a:hover{
+  opacity: 0.9;
+}
+
+
+/* ===================== Mini efe ===================== */
+
+/* HERO brand: κέντρο */
+.nav__brand--hero{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  mix-blend-mode: difference;
+  color: #fff;
+  text-decoration: none !important;
+  
+  font-size: clamp(70px, 7vw, 80px)!important;
+  letter-spacing: 0.22em;
+  transition: opacity 180ms ease, transform 220ms ease, font-size 220ms ease, letter-spacing 220ms ease;
+}
+
+/* Nav brand: κρυφό αρχικά (θα εμφανιστεί όταν "κολλήσει") */
+.nav__brand--nav{
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 180ms ease, transform 220ms ease;
+}
+
+/* Όταν κάνεις scroll κάτω από το hero */
+.is-stuck .nav__brand--hero{
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -60%);
+}
+
+.is-stuck .nav__brand--nav{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+
+/* ===================== Mini efe ===================== */
+
+/* ===================== BEST HERO EVER ===================== */
+
+.hero{
+  position:relative;
+  height: 92svh;
+  background: #fff;
+  color: var(--paper2);
+  overflow: hidden;
+}
+
+.hero__grid{
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 14px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+
+.hero__tile{
+  height: 45%;
+  width: 100%;
+
+  position: absolute;
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,.14);
+  /* box-shadow: 0 30px 70px #FFEAAB; */
+}
+
+.hero__tile img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  /* filter: saturate(1.08) contrast(1.05); */
+}
+
+.hero__tile-t{
+  top: 0%;
+  right: 0%;
+}
+
+.hero__tile-b{
+  bottom: 0%;
+  left: 0%;
+}
+
+
+/* Το hero brand να είναι πάνω από όλα */
+.nav__brand--hero{
+  font-size: 10vw !important;
+  z-index: 3;
+}
+
+@media (max-width: 1000px){
+  .nav__brand--hero{
+    font-size: 20vw !important;  
+  }  
+}
+
+
+.hero__tile img{
+  position: relative;
+  z-index: 1;
+}
+
+/* top-left-text */
+.hero__caption{
+  position: absolute;
+  top: 16px;
+  left: 26px;
+  right: 16px;
+  z-index: 2;
+  max-width: 560px;
+  padding: 14px 14px;
+
+  /* σημαντικό */
+  mix-blend-mode: normal;
+}
+
+/* highlight “σαν selected” γύρω από τις γραμμές του κειμένου */
+.hero__caption h1,
+.hero__caption p{
+  mix-blend-mode: normal;
+
+  display: inline;
+  background: rgba(0,0,0,.38);
+  padding: 0.10em 0.35em;
+  border-radius: 0.40em;
+
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+
+  text-shadow: 0 2px 14px rgba(0,0,0,.55);
+}
+
+/* line break + spacing (γιατί το h1 είναι inline) */
+.hero__caption h1::after{
+  content: "";
+  display: block;
+  height: 10px;
+}
+
+.hero__caption h1{
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 34px);
+  letter-spacing: .02em;
+  line-height: 1.15;
+}
+
+.hero__caption p{
+  margin: 0;
+  color: #fff;
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+.hero__caption h1,
+.hero__caption p{
+  background: none;
+  padding: 0;
+  text-shadow:
+    0 2px 14px rgba(0,0,0,.65),
+    1px 0 0 rgba(0,0,0,.55),
+   -1px 0 0 rgba(0,0,0,.55),
+    0 1px 0 rgba(0,0,0,.55),
+    0 -1px 0 rgba(0,0,0,.55);
+}
+
+
+.hero__caption--br{
+  top: auto;
+  left: auto;
+  right: 60px;
+  bottom: 20px;
+  max-width: 420px;
+  text-align: right;
+  padding: 0;
+}
+
+.hero__caption--br p{
+  font-size: clamp(13px, 1.35vw, 16px);
+}
+
+.hero__caption--br a{
+  color: #fff;
+}
+
+/* ===================== BEST HERO EVER ===================== */
+
+
+/* SECTIONS */
+.section{
+  padding: 84px 0;
+}
+.section--alt{
+  background: var(--paper);
+}
+.section__head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 18px;
+  margin-bottom: 26px;
+}
+.section__head h2{
+  font-family:"Playfair Display", serif;
+  font-size: clamp(26px, 3vw, 36px);
+  margin:0;
+}
+.section__head p{
+  margin:0;
+  max-width: 52ch;
+  line-height:1.6;
+  color: var(--muted);
+}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.card{
+  background: var(--paper2);
+  border: 1px solid rgba(12,12,12,.10);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.section--alt .card{
+  background: var(--paper);
+}
+.card__media img{
+  width:100%;
+  height: 280px;
+  object-fit: cover;
+  display:block;
+}
+.card__body{
+  padding: 18px 18px 16px;
+}
+.card__top h3{
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+.card__top p{ margin:0 0 12px; }
+
+.bullets{
+  padding-left: 18px;
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height:1.6;
+}
+.card__actions{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  margin-bottom: 14px;
+}
+
+/* Gallery grid */
+.carousel{
+  position: relative;
+}
+
+.carousel__track{
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.carousel__track::-webkit-scrollbar{ display:none; }
+
+.carousel__slide{
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Βελάκια */
+.carousel__btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.16);
+  color: rgba(255,255,255,.9);
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  opacity: 0; /* κρύβονται όταν δεν γίνεται hover/focus */
+  transition: opacity var(--t), background var(--t), transform var(--t), border-color var(--t);
+  backdrop-filter: blur(6px);
+}
+
+.carousel:hover .carousel__btn,
+.carousel:focus-within .carousel__btn{
+  opacity: .60;
+}
+
+.carousel__btn:hover{
+  opacity: .95;
+  background: rgba(0,0,0,.30);
+  border-color: rgba(255,255,255,.26);
+}
+
+.carousel__btn:active{
+  transform: translateY(-50%) scale(.98);
+}
+
+.carousel__btn--prev{ left: 10px; }
+.carousel__btn--next{ right: 10px; }
+
+/* Σε touch συσκευές (που δεν έχουν hover) μένουν ελαφρά ορατά */
+@media (hover: none){
+  .carousel__btn{ opacity: .55; }
+}
+
+@media (max-width: 520px){
+  .carousel__btn{ width: 38px; height: 38px; }
+}
+
+
+/* Dots */
+.carousel__dots{
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+}
+
+.carousel__dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  background: rgba(255,255,255,.55);
+  cursor: pointer;
+}
+.carousel__dot.is-active{ background: rgba(255,255,255,.95); }
+
+
+.note{
+  margin-top: 14px;
+}
+
+/* Features */
+.features{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.feature{
+  border-radius: var(--radius);
+  background: var(--paper);
+  border: 1px solid rgba(12,12,12,.10);
+  padding: 16px;
+}
+.section--alt .feature{
+  background: var(--paper2);
+}
+.feature h3{ margin: 0 0 6px; font-size: 16px; }
+.feature p{ margin:0; line-height:1.6; }
+
+.about{
+  margin-top: 18px;
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid rgba(12,12,12,.10);
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.00));
+}
+.about__title{
+  margin:0 0 8px;
+  font-size: 16px;
+}
+
+/* Map */
+.map{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border: 1px solid rgba(12,12,12,.10);
+  background: var(--paper2);
+  box-shadow: var(--shadow);
+}
+.map iframe{
+  width:100%;
+  height: 420px;
+  border:0;
+  display:block;
+}
+.map__actions{
+  display:flex;
+  gap: 10px;
+  padding: 14px;
+  justify-content:flex-end;
+  background: rgba(0,0,0,.02);
+}
+
+/* Contact */
+.contact{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 14px;
+}
+.contact__card{
+  border-radius: var(--radius);
+  border: 1px solid rgba(12,12,12,.10);
+  background: var(--paper);
+  padding: 18px;
+}
+.section--alt .contact__card{ background: var(--paper2); }
+.contact__big{
+  font-size: 28px;
+  margin: 10px 0 6px;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.contact__big a{ color: inherit; text-decoration:none; }
+.contact__buttons{
+  display:flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* Footer */
+/* Footer (new) */
+.footer{
+  padding: 54px 0 30px;
+  background: linear-gradient(180deg, #0b0b0b 0%, #070707 100%);
+  color: rgba(255,255,255,.86);
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+
+.footer a{
+  color: inherit;
+  text-decoration: none;
+}
+.footer a:hover{
+  opacity: .92;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+
+/* Buttons on dark footer */
+.footer .btn--solid{
+  background: rgba(255,255,255,.96);
+  color: #0b0b0b;
+  border-color: rgba(255,255,255,.22);
+}
+.footer .btn--solid:hover{ opacity: .92; }
+
+.footer .btn--ghost{
+  color: rgba(255,255,255,.90);
+  border-color: rgba(255,255,255,.18);
+}
+.footer .btn--ghost:hover{
+  background: rgba(255,255,255,.06);
+}
+
+.footer__grid{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 18px;
+  padding: 10px 0 6px;
+}
+
+.footer__brand{
+  display:inline-block;
+  font-weight: 800;
+  letter-spacing: .22em;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.footer__desc{
+  margin: 10px 0 0;
+  color: rgba(255,255,255,.68);
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+.footer__title{
+  margin: 6px 0 10px;
+  font-size: 13px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.74);
+}
+
+.footer__list{
+  list-style:none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  color: rgba(255,255,255,.72);
+}
+
+.footer__meta{
+  color: rgba(255,255,255,.54);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.footer__bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.12);
+
+  color: rgba(255,255,255,.60);
+  font-size: 13px;
+}
+
+.footer__mini{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+}
+
+@media (max-width: 768px){
+  .footer__grid{
+    grid-template-columns: 1fr;
+  }
+  .footer__bottom{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+/* Lightbox */
+.lightbox{
+  position: fixed;
+  inset:0;
+  background: rgba(0,0,0,.84);
+  display:none;
+  place-items:center;
+  z-index: 1000;
+  padding: 22px;
+}
+.lightbox.is-open{ display:grid; }
+.lightbox__img{
+  width:min(1100px, 100%);
+  max-height: 84vh;
+  object-fit: contain;
+  /* border-radius: 18px; */
+}
+.lightbox__close{
+  position: fixed;
+  top: 14px; right: 14px;
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  font-size: 26px;
+  cursor:pointer;
+}
+
+/* Lightbox nav arrows */
+.lightbox__nav{
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.92);
+
+  font-size: 28px;
+  line-height: 1;
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  opacity: .65;
+  transition: opacity var(--t), background var(--t), transform var(--t);
+}
+
+.lightbox__nav:hover{
+  opacity: .95;
+  background: rgba(255,255,255,.14);
+}
+
+.lightbox__nav:active{
+  transform: translateY(-50%) scale(.98);
+}
+
+.lightbox__nav--prev{ left: 14px; }
+.lightbox__nav--next{ right: 14px; }
+
+@media (max-width: 520px){
+  .lightbox__nav{
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+}
+
+
+/* Reveal on scroll */
+.reveal{
+  opacity:0;
+  transform: translateY(10px);
+  transition: opacity 520ms var(--ease), transform 520ms var(--ease);
+}
+.reveal.is-visible{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .cards{ grid-template-columns: 1fr; }
+  .features{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact{ grid-template-columns: 1fr; }
+  .map__actions{ justify-content: stretch; }
+  .map__actions .btn{ width: 100%; }
+}
+
+@media (max-width: 520px){
+  .container{ width:min(var(--max), calc(100% - 32px)); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ transition:none; transform:none; opacity:1; }
+  .btn{ transition:none; }
+}
+
+/* Mobile layout: 4 links πάνω, DOUKAS κάτω στο κέντρο σαν divider */
+@media (max-width: 1000px){
+  .nav{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* <-- σημαντικό */
+    gap: 6px 10px;
+    padding: 10px 10px 6px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Τα 4 links στην πρώτη σειρά */
+  .nav a{
+    justify-self: center;
+    font-weight: 700;
+    font-size: clamp(12px, 3.2vw, 20px);
+    letter-spacing: 0.02em;
+    padding: 0px 6px;
+    line-height: 1.1;
+
+    min-width: 0;           /* <-- σημαντικό σε grid */
+    white-space: normal;    /* <-- βγάζουμε το nowrap */
+    text-align: center;
+    /* overflow-wrap: anywhere;  TODO */
+  }
+
+  /* Το DOUKAS κάτω, full width, “διαχωριστικό” */
+  .nav a.nav__brand{
+    grid-column: 1 / -1;   /* πιάνει όλο το πλάτος */
+    grid-row: 2;           /* πάει στη 2η σειρά */
+    justify-self: center;
+
+    font-weight: 800;
+    font-size: clamp(30px, 5vw, 40px);
+    letter-spacing: 0.28em;  /* η “καλή απόσταση” που ζήτησες */
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
