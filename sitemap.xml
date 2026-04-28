@@ -1,8 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Greek Homepage -->
   <url>
-    <loc>https://YOUR-DOMAIN.gr/</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://douckasrooms.com/</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+
+    <!-- Language alternates -->
+    <xhtml:link rel="alternate" hreflang="el" href="https://douckasrooms.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://douckasrooms.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://douckasrooms.com/" />
+
+    <!-- Key images for better indexing -->
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/wp/07.jpg</image:loc>
+      <image:title>DOUCKAS Apartments Main View - Sivota Greece</image:title>
+      <image:caption>DOUCKAS Apartments εσωτερικός χώρος στα Σύβοτα Θεσπρωτίας</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/wp/up.jpg</image:loc>
+      <image:title>DOUCKAS I Apartment Interior - Kitchen and Living Area</image:title>
+      <image:caption>Κύριος χώρος με παραδοσιακή διακόσμηση και σύγχρονες παροχές</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt1/01.jpg</image:loc>
+      <image:title>DOUCKAS I Apartment Entrance</image:title>
+      <image:caption>Κύρια είσοδος και εξωτερικός χώρος διαμερίσματος</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt2/01.jpg</image:loc>
+      <image:title>DOUCKAS II Apartment Interior</image:title>
+      <image:caption>DOUCKAS II διαμέρισμα με μοντέρνες παροχές</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt3/01.jpg</image:loc>
+      <image:title>DOUCKAS III Apartment View</image:title>
+      <image:caption>DOUCKAS III διαμέρισμα στα Σύβοτα</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt4/01.jpg</image:loc>
+      <image:title>DOUCKAS IV Apartment Interior</image:title>
+      <image:caption>DOUCKAS IV διαμέρισμα με κουζίνα και κλιματισμό</image:caption>
+    </image:image>
   </url>
+
+  <!-- English Homepage -->
+  <url>
+    <loc>https://douckasrooms.com/en</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+
+    <!-- Language alternates -->
+    <xhtml:link rel="alternate" hreflang="el" href="https://douckasrooms.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://douckasrooms.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://douckasrooms.com/" />
+
+    <!-- Same key images with English descriptions -->
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/wp/07.jpg</image:loc>
+      <image:title>DOUCKAS Apartments Sivota Greece - Vacation Rental Main View</image:title>
+      <image:caption>Beautiful vacation rental apartments in Sivota, Greece with modern amenities</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/wp/up.jpg</image:loc>
+      <image:title>DOUCKAS I Vacation Rental - Living Area with Traditional Greek Décor</image:title>
+      <image:caption>Main living area with traditional Greek decoration and modern amenities</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt1/01.jpg</image:loc>
+      <image:title>DOUCKAS I Apartment Entrance - Sivota Greece Accommodation</image:title>
+      <image:caption>Main entrance and exterior area of vacation rental apartment</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt2/01.jpg</image:loc>
+      <image:title>DOUCKAS II Vacation Rental Interior - Greece Holiday Accommodation</image:title>
+      <image:caption>DOUCKAS II apartment with modern amenities and comfort</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt3/01.jpg</image:loc>
+      <image:title>DOUCKAS III Sivota Apartment - Greek Island Vacation Rental</image:title>
+      <image:caption>DOUCKAS III apartment in beautiful Sivota, Thesprotia</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://douckasrooms.com/assets/apt4/01.jpg</image:loc>
+      <image:title>DOUCKAS IV Greece Vacation Rental - Kitchen and AC</image:title>
+      <image:caption>DOUCKAS IV apartment with full kitchen and air conditioning</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
