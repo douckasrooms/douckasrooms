@@ -715,6 +715,20 @@ p.section-subtitle{
   align-items:center;
 }
 
+.footer__credit{
+  display:block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+}
+.footer__credit a{
+  color: rgba(255,255,255,.62);
+  transition: color var(--t);
+}
+.footer__credit a:hover{
+  color: rgba(255,255,255,.92);
+}
+
 @media (max-width: 768px){
   .footer__grid{
     grid-template-columns: 1fr;
